@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none; /* Safari */
+    user-select: none;
+  }
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+:root {
+    --app-theme: oklch(0% 0 0);
+
+    --lobster: "Lobster", sans-serif;
+    --montserrat: "Montserrat", sans-serif;
+    --inter: "Inter" , sans-serif;
+    --lexend:  "Lexend", sans-serif;
+    --rubik: "Rubik", sans-serif;
+}
+
+body {
+    background: var(--app-theme);
+}
+
+p {
+    font-family: var(--rubik);
+}
+
+.lobster {
+    font-family: var(--lobster);
+}
+.montserrat {
+    font-family: var(--montserrat);
+}
+.inter {
+    font-family: var(--inter);
+}
+.lexend {
+    font-family: var(--lexend);
+}
+.rubik {
+    font-family: var(--rubik);
+}
