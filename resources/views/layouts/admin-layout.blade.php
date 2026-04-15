@@ -30,7 +30,7 @@
                 <div class=" w-full my-5 ">
                     <p class="text-sm font-medium">Navigation</p>
                     <div class="flex flex-col text-sm lexend font-medium gap-1">
-                        <button class=" current-tab dropdown-btn outline-0 fill-gray-500 text-left py-2 px-4 rounded-md text-gray-500 flex flex-row flex-nowrap gap-2 items-center">
+                        <button class=" {{ (request()->routeIs('AdminDashboard') || request()->routeIs('AdminAnalytics')) ? 'current-tab' : ''}} dropdown-btn outline-0 fill-gray-500 text-left py-2 px-4 rounded-md text-gray-500 flex flex-row flex-nowrap gap-2 items-center">
                             <svg height="24px" viewBox="0 -960 960 960" width="24px"><path d="M640-160v-280h160v280H640Zm-240 0v-640h160v640H400Zm-240 0v-440h160v440H160Z"/></svg>
                             Dashboard
                             <div class="arrow ml-auto pointer-events-none">
@@ -39,9 +39,12 @@
                             </div>
                         </button>
                         <ul class=" h-0 overflow-hidden dropdown-list w-full list-disc list-inside flex flex-col gap-1">
-                            <a href=""><li class=" py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Analytics</li></a>
-                            <a href=""><li class=" py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Finance</li></a>
-                            <a href=""><li class=" py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Default</li></a>
+                            <a href="{{ route('AdminDashboard')}}">
+                                <li class=" {{ request()->routeIs('AdminDashboard') ? 'current-sub-tab' : ''}} py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Default</li></a>
+                            <a href="{{ route('AdminAnalytics')}}">
+                                <li class=" {{ request()->routeIs('AdminAnalytics') ? 'current-sub-tab' : ''}} py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Analytics</li></a>
+                            <a href="">
+                                <li class=" py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Finance</li></a>
                         </ul>
                     </div>
 
@@ -56,8 +59,8 @@
                             </div>
                         </button>
                         <ul class=" h-0 overflow-hidden dropdown-list w-full list-disc list-inside flex flex-col gap-1">
+                            <a href=""><li class=" py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Manage</li></a>
                             <a href=""><li class=" py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Privileges</li></a>
-                            <a href=""><li class=" py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Work Status</li></a>
                         </ul>
                     </div>
                 </div>
@@ -86,13 +89,15 @@
 
         {{-- page contents  --}}
         <div class="w-full h-screen px-5">
-            <nav class="w-full flex justify-between px-3 items-center">
-                <a href="">Home</a>
-                <a href="{{ route('logout')}}" class=" flex flex-row text-sm items-center text-green-600 px-4 py-2 rounded-md">
+            <nav class="w-full flex justify-between px-3 py-2 items-center shadow-2xs">
+                <a href="" class=" font-medium bg-green-100 px-2 rounded-3xl text-sm text-green-500">Restaurent</a>
+                <a href="{{ route('logout')}}" class=" flex flex-row text-sm items-center text-green-600 px-4 py-2 rounded-md font-medium bg-green-100">
                     <svg height="24px" viewBox="0 -960 960 960" width="24px" class=" fill-green-600"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg> Logout
                 </a>
             </nav>
-            @yield('page-content')
+            <div class=" w-full min-h-[calc(100vh-60px)] flex flex-col gap-6 flex-nowrap p-6">
+                @yield('page-content')
+            </div>
         </div>
     </div>
 </body>

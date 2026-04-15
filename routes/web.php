@@ -18,7 +18,8 @@ Route::domain('admin.' . env('APP_DOMAIN'))->group(function() {
     Route::post('/authenticating', [AdminController::class, 'authenticateAdmin'])->name('authenticateAdmin');
 
     Route::middleware(isLoggedIn::class)->group(function(){
-        Route::get('/dashboard/analytics',[AdminController::class, 'dashboard'])->name('AdminDashboard');
+        Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('AdminDashboard');
+        Route::get('/dashboard/analytics',[AdminController::class, 'analytics'])->name('AdminAnalytics');
         Route::get('/logout',[AdminController::class, 'logout'])->name('logout');
     });
 
