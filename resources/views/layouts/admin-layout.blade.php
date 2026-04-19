@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/app-basis.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/admin-classes.css')}}">
     <script src="{{ asset('assets/js/dropdown-sidenav-admin.js')}}" defer></script>
+    <script src="{{ asset('assets/js/modals/AddWorkerModal.js')}}" defer></script>
+    <script src="{{ asset('assets/js/modals/EditWorkerModal.js')}}" defer></script>
 </head>
 <body>
     <div class="grid grid-cols-[280px_auto]">
@@ -20,7 +22,7 @@
             <div class=" w-full py-5 px-2 bg-gray-100 rounded-lg flex justify-evenly items-center border border-gray-200" id="usercard">
                 <img src="{{ asset('assets/images/Profile-Male-PNG.webp')}}" id="userprofile" class=" rounded-4xl w-10">
                 <div id="details" class="grid">
-                    <h1 class=" text-black font-bold capitalize">{{ Auth::guard('admin')->user()->admin_name }}</h1>
+                    <h1 class=" text-black font-bold capitalize leading-4 mb-1">{{ Auth::guard('admin')->user()->admin_name }}</h1>
                     <p class="text-xs">{{ Auth::guard('admin')->user()->role }}</p>
                 </div>
                 <svg height="24px" viewBox="0 -960 960 960" width="24px" class=" fill-green-500"><path d="M420-360h120l-23-129q20-10 31.5-29t11.5-42q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 23 11.5 42t31.5 29l-23 129Zm60 280q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"/></svg>

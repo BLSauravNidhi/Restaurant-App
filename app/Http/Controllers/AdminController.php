@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
+use App\Models\RestaurentAdmin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {   
@@ -51,7 +52,11 @@ class AdminController extends Controller
         return view('admin.administrator.admin-analytics');
     }
     public function manageStaff(){
-        return view('admin.administrator.manage-staff');
+        $workers = RestaurentAdmin::where('role','waiter')
+            ->orWhere('role','kitchen')
+            ->select('id','admin_name','email','role',)->get();
+
+        return view('admin.administrator.manage-staff', ['workers' => $workers]);
     }
     // ----------------------------------------------------------------
 

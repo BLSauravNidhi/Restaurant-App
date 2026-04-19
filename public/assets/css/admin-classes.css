@@ -20,3 +20,18 @@
     color: #000 !important;
     background: oklch(92.8% 0.006 264.531) !important;
 }
+
+#staffTable th  {
+    padding: 18px 0;
+}
+#staffTable td  {
+    padding: 16px 0;
+}
+#staffTable tr  {
+    border: 1px solid #ddd;
+}
+
+
+/* #staffTable tr:nth-child(even){
+    background: rgb(233, 233, 233);
+} */
