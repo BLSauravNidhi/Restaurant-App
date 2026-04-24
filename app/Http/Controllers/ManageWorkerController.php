@@ -65,7 +65,7 @@ class ManageWorkerController extends Controller
      */
     public function edit(string $id)
     {
-        $worker = RestaurentAdmin::find($id);
+        $worker = RestaurentAdmin::findOrFail($id);
         return view('admin.administrator.edit-worker', compact('worker'));
     }
 
