@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\RestaurentAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,9 +9,7 @@ class AdminController extends Controller
     // Login page
     public function AdminLogin() {
         if(Auth::guard('admin')->check()){
-            if(Auth::guard('admin')->user()->role == 'administrator'){
-                return redirect()->route('AdminDashboard');
-            }
+            return redirect()->route('AdminDashboard');
         } else {
             return view('admin.login');
         }

@@ -11,4 +11,8 @@ class Table extends Model
     public function tblsessions(){
         return $this->hasMany(TableSession::class);
     }
+
+    public function tblrequests(){
+        return $this->hasMany(TableSession::class);
+    }
 }

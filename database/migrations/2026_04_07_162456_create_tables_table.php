@@ -19,6 +19,16 @@ return new class extends Migration
             $table->foreignId('status_updated_by')->references('id')->on('restaurent_admins')->nullable()->comment('FK restaurent_admins.id');
             $table->timestamp('status_updated_at')->nullable()->useCurrent();
         });
+
+        Schema::create('table_requests', function (Blueprint $table) {
+            $table->id();
+            $table->integer('table_number')->unique();
+            $table->foreign('table_number')->references('table_number')->on('tables');
+            $table->enum('request_status',['approved','pending'])->default('pending');
+            $table->timestamp('made_at')->useCurrent();
+            $table->timestamp('approved_at')->nullable()->useCurrent();
+            $table->foreignId('approved_by')->references('id')->on('restaurent_admins')->nullable();
+        });
     }
 
     /**

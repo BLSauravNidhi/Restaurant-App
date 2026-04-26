@@ -14,17 +14,21 @@ Route::domain(env('APP_DOMAIN'))->group(function() {
     Route::get('/table/{id}',[TableController::class, 'GetTableAccess'])->name('GetTable');
 });
 
+// Admins Routes 
 Route::domain('admin.' . env('APP_DOMAIN'))->group(function() {
     Route::get('/',[AdminController::class, 'AdminLogin'])->name('AdminLogin');
     Route::post('/authenticating', [AdminController::class, 'authenticateAdmin'])->name('authenticateAdmin');
 
     Route::middleware(isLoggedIn::class)->group(function(){
         Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('AdminDashboard');
-        Route::get('/dashboard/analytics',[AdminController::class, 'analytics'])->name('AdminAnalytics');
-        // manage workers 
-        Route::resource('dashboard/manage-worker', ManageWorkerController::class)->only([
-            'index','store','update','destroy','edit'
-        ]);
+        
+        Route::middleware('role:administrator')->group(function(){
+            Route::get('/dashboard/analytics',[AdminController::class, 'analytics'])->name('AdminAnalytics');
+            // manage workers 
+            Route::resource('dashboard/manage-worker', ManageWorkerController::class)->only([
+                'index','store','update','destroy','edit'
+            ]);
+        });
 
         Route::get('/logout',[AdminController::class, 'logout'])->name('logout');
     });
