@@ -63,7 +63,9 @@ class AdminController extends Controller
 
 
     public function tableRequests(){
-        $tableRequests = TableRequest::with('tableinfo')->where('request_status','pending')->get() ;
+        $tableRequests = TableRequest::orderBy('made_at', 'desc')
+            ->with('tableinfo')
+            ->where('request_status','pending')->get();
 
         // return $tableRequests;
         return view('admin.waiter.table-requests', ['tableRequests' => $tableRequests ]);

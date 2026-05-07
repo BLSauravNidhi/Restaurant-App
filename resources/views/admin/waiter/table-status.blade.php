@@ -13,7 +13,7 @@
                     <div class="status w-full h-fit flex flex-nowrap items-center px-2">
                         @switch($table->status)
                             @case('occupied')
-                                <h5 class="ml-auto w-14.75 flex items-center justify-center flex-nowrap bg-blue-600 px-1.5 py-0.5 font-medium text-[10px] text-white rounded-md">Occupied</h5>
+                                <h5 class="ml-auto w-14.75 flex items-center justify-center flex-nowrap bg-orange-600 px-1.5 py-0.5 font-medium text-[10px] text-white rounded-md">Occupied</h5>
                                 @break
                             @case('available')
                                 <h5 class="ml-auto w-14.75 flex items-center justify-center flex-nowrap bg-emerald-600 px-1.5 py-0.5 font-medium text-[10px] text-white rounded-md">Available</h5>
