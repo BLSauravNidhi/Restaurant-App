@@ -113,6 +113,17 @@ class AdminController extends Controller
         return redirect()->route('TableRequests');
     }
 
+    // cancel the occupied table
+    public function cancelTable(string $adminId, string $sessionId){
+        $tableSession = TableSession::find($sessionId);
+        $tableSession->delete();
+
+        $tableRequest = TableRequest::where('session_id', $tableSession->id)
+            ->update(['request_status' => 'cancelled',]);
+
+        return redirect()->route('TableStatus');
+    }
+
 
     // logout 
     public function logout(){

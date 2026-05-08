@@ -39,9 +39,11 @@ Route::domain('admin.' . env('APP_DOMAIN'))->group(function() {
         Route::get('dashboard/table-status', [AdminController::class, 'tableStatus'])->name('TableStatus');
         Route::get('dashboard/table-requests', [AdminController::class, 'tableRequests'])->name('TableRequests');
         
-        // post methods for table Requests page
+        // Table Requests page
         Route::get('dashboard/table-status/approve/{admin}/{id}/', [AdminController::class , 'tableRequestApproved'])->name('approveTableRequest');
         Route::get('dashboard/table-status/reject/{admin}/{id}', [AdminController::class , 'tableRequestRejected'])->name('rejectTableRequest');
+
+        Route::get('dashboard/table-status/cancel/{adminId}/{reqId}', [AdminController::class, 'cancelTable'])->name('table.cancel');
 
         Route::get('/logout',[AdminController::class, 'logout'])->name('logout');
     });
