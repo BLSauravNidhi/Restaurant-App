@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\MenuItem;
 use App\Models\TableSession;
 // use Illuminate\Http\Request;
 
@@ -20,7 +22,18 @@ class PageController extends Controller
         if($verifyTableAccess){
             // Get Session Details
             $sessionInfo = TableSession::where('session_token', $token)->first();
-            return view('customer.table-menu', ['sessionInfo' => $sessionInfo]);
+
+            // Get Menu items
+            $menuItems = MenuItem::get();
+            
+            // Get Current Session's Cart Item Only If Exsts
+            $cartItems = Cart::where('session_id',$sessionInfo->id)->with('GetItems')->first();
+            // return $cartItems;
+            return view('customer.table-menu', [
+                    'sessionInfo' => $sessionInfo,
+                    'menuItems' => $menuItems,
+                    'cartItems' => $cartItems,
+                ]);
         } else {
             return redirect()->route('HomePage');
         }

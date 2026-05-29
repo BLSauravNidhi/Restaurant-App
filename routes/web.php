@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ManageWorkerController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\TableController;
@@ -22,6 +23,8 @@ Route::domain(env('APP_DOMAIN'))->group(function() {
     Route::post('/table/verify', [TableController::class, 'verifyTable'])->name('verifyTable');
 
     Route::get('/menu/{tableNum}/{token}', [PageController::class, 'tableMenu'])->name('getMenu');
+
+    Route::resource('/menu/{tableNum}/{token}/cart', CartController::class);
 });
 
 // Admins Routes 

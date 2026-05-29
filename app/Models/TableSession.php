@@ -16,4 +16,8 @@ class TableSession extends Model
     public function cart(){
         return $this->hasOne(Cart::class, 'session_id');
     }
+
+    public function cartItems(){
+        return $this->hasOneThrough(cart_items::class, Cart::class);
+    }
 }

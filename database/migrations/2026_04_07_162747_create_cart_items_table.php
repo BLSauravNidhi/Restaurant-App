@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cart_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cart_id')->references('id')->on('carts')->comment('FK carts.id');
+            $table->foreignId('cart_id')->references('id')->on('carts')->comment('FK carts.id')->cascadeOnDelete();
             $table->foreignId('menu_item_id')->references('id')->on('menu_items')->comment('FK menu_items.id');
             $table->integer('quantity');
         });

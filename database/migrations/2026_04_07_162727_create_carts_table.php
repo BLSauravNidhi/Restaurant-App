@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('session_id')->references('id')->on('table_sessions')->comment('FK table_sessions.id');
+            $table->foreignId('session_id')->references('id')->on('table_sessions')->comment('FK table_sessions.id')->cascadeOnDelete();
+            $table->enum('cart_status',['pending','ordered'])->default('pending');
         });
     }
 
