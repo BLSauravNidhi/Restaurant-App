@@ -99,26 +99,26 @@
                     <svg viewBox="0 -960 960 960" class=" w-7 h-7 bg-white rounded-3xl p-1"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg>
 
                     <span item-id="{{ $item->id}}" class=" cart-item w-fit h-fit flex flex-nowrap justify-center items-center text-center bg-emerald-500 text-white rounded-2xl font-bold overflow-hidden">
-                                @php
-                                    // Pluck all item IDs into an array for a fast, clean check
-                                    $cartItemIds = $cartItems ? $cartItems->GetItems->pluck('id')->toArray() : [];
-                                @endphp
+                            @php
+                                // Pluck all item IDs into an array for a fast, clean check
+                                $cartItemIds = $cartItems ? $cartItems->GetItems->pluck('menu_item_id')->toArray() : [];
+                            @endphp
 
-                                @if (in_array($item->id, $cartItemIds))
-                                    <!-- Checkmark Icon (Item is in cart) -->
-                                    <button class="">
-                                        <svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
-                                            <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
-                                        </svg>
-                                    </button>
-                                @else
-                                    <!-- Plus Icon (Item is NOT in cart) -->
-                                    <button class=" add-to-cart">
-                                        <svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
-                                            <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/>
-                                        </svg>
-                                    </button>
-                                @endif
+                            @if (in_array($item->id, $cartItemIds))
+                                <!-- Checkmark Icon (Item is in cart) -->
+                                <button class="">
+                                    <svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+                                        <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+                                    </svg>
+                                </button>
+                            @else
+                                <!-- Plus Icon (Item is NOT in cart) -->
+                                <button class=" add-to-cart">
+                                    <svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+                                        <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/>
+                                    </svg>
+                                </button>
+                            @endif
                     </span>
                 </div>
             </div>
