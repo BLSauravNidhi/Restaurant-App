@@ -43,7 +43,14 @@
         <h3 class=" font-medium lexend text-xl">Delicios foods here</h3>
         <div class=" flex flex-row flex-nowrap items-center overflow-x-scroll gap-3 py-6">
             {{-- Top food list start --}}
-            <div class=" w-26 h-26 bg-gray-200 text-center flex flex-col justify-center items-center shrink-0 gap-2 rounded-2xl">
+            @foreach ($viewData['categories'] as $category)
+                <div class=" w-26 h-26 bg-gray-200 text-center flex flex-col justify-center items-center shrink-0 gap-2 rounded-2xl">
+                    <img src="{{ $category->image}}" class="w-10 h-10 rounded-4xl mix-blend-multiply brightness-120 bg-gray-200">
+                    <p class="font-medium text-black lexend">{{ $category->name }}</p>
+                </div>
+            @endforeach
+
+            {{-- <div class=" w-26 h-26 bg-gray-200 text-center flex flex-col justify-center items-center shrink-0 gap-2 rounded-2xl">
                 <img src="" class="w-10 h-10 rounded-4xl bg-gray-200">
                 <p class="font-medium text-black lexend">Veg</p>
             </div>
@@ -57,7 +64,7 @@
             </div>
             <div class=" w-26 h-26 bg-gray-200 text-center flex flex-col justify-center items-center shrink-0 gap-2 rounded-2xl">
                 <img src="" class="w-10 h-10 rounded-4xl bg-gray-200">
-                <p class="font-medium text-black lexend">Drinks</p>
+                <p class="font-medium text-black lexend">Drinks</p> --}}
             </div>
             {{-- Top food list end --}}
         </div>
@@ -83,7 +90,7 @@
         <div class="w-full flex gap-3 flex-wrap justify-center">
             
             {{-- Items Start  --}}
-            @foreach ($menuItems as $item)
+            @foreach ($viewData['menuItems'] as $item)
                 <div class="w-90 h-32 shrink- rounded-2xl bg-gray-200 overflow-hidden relative grid grid-cols-[35%_auto_25%]">
                 <span class=" absolute top-0 left-0 bg-black text-white rounded-br-2xl px-2 py-1.5 text-xs font-medium rubik">34% off</span>
                 <div class="flex justify-end items-center">
@@ -101,7 +108,7 @@
                     <span item-id="{{ $item->id}}" class=" cart-item w-fit h-fit flex flex-nowrap justify-center items-center text-center bg-emerald-500 text-white rounded-2xl font-bold overflow-hidden">
                             @php
                                 // Pluck all item IDs into an array for a fast, clean check
-                                $cartItemIds = $cartItems ? $cartItems->GetItems->pluck('menu_item_id')->toArray() : [];
+                                $cartItemIds = $viewData['cartItems'] ? $viewData['cartItems']->GetItems->pluck('menu_item_id')->toArray() : [];
                             @endphp
 
                             @if (in_array($item->id, $cartItemIds))
