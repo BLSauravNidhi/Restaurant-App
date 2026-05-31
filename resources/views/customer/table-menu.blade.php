@@ -49,22 +49,6 @@
                     <p class="font-medium text-black lexend">{{ $category->name }}</p>
                 </div>
             @endforeach
-
-            {{-- <div class=" w-26 h-26 bg-gray-200 text-center flex flex-col justify-center items-center shrink-0 gap-2 rounded-2xl">
-                <img src="" class="w-10 h-10 rounded-4xl bg-gray-200">
-                <p class="font-medium text-black lexend">Veg</p>
-            </div>
-            <div class=" w-26 h-26 bg-gray-200 text-center flex flex-col justify-center items-center shrink-0 gap-2 rounded-2xl">
-                <img src="" class="w-10 h-10 rounded-4xl bg-gray-200">
-                <p class="font-medium text-black lexend">Non Veg</p>
-            </div>
-            <div class=" w-26 h-26 bg-gray-200 text-center flex flex-col justify-center items-center shrink-0 gap-2 rounded-2xl">
-                <img src="" class="w-10 h-10 rounded-4xl bg-gray-200">
-                <p class="font-medium text-black lexend">Fast Food</p>
-            </div>
-            <div class=" w-26 h-26 bg-gray-200 text-center flex flex-col justify-center items-center shrink-0 gap-2 rounded-2xl">
-                <img src="" class="w-10 h-10 rounded-4xl bg-gray-200">
-                <p class="font-medium text-black lexend">Drinks</p> --}}
             </div>
             {{-- Top food list end --}}
         </div>
