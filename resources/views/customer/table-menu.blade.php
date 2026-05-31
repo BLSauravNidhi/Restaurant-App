@@ -29,6 +29,7 @@
                     if (data.success) {
                         this.classList.remove('add-to-cart');
                         this.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>';
+                        this.parentNode.classList.replace('bg-red-500','bg-lime-600');
                     }
                 })
                 .catch(error => console.log('Error:', error));
@@ -56,7 +57,7 @@
     {{-- categories ending --}}
     {{-- page start --}}
     <section class="px-3 pb-8">
-        <div class="w-full min-h-50 rounded-4xl bg-emerald-500"></div>
+        <img src="https://img.magnific.com/free-psd/delicious-burger-food-menu-web-banner-template_106176-1436.jpg?semt=ais_hybrid&w=740&q=80" class="w-full max-h-50 rounded-4xl bg-lime-600 aspect-video object-cover object-center"></img>
     </section>
     {{-- page end  --}}
     
@@ -66,7 +67,7 @@
     <section class="px-3 pb-8 flex flex-col gap-6">
         {{-- Filter items start --}}
         <div class="w-full overflow-x-scroll overflow-y-hidden flex flex-nowrap items-center gap-2">
-            <p class="px-2 py-0 5 bg-emerald-500 text-white rounded-sm font-medium shadow-2xs whitespace-nowrap">Filter</p>
+            <p class="px-2 py-0 5 bg-lime-600 text-white rounded-sm font-medium shadow-2xs whitespace-nowrap">Filter</p>
             <p class="px-2 py-0 5 bg-gray-300 text-gray-800 rounded-sm font-medium shadow-2xs whitespace-nowrap">All Categories</p>
         </div>
         {{-- Filter items end --}}
@@ -88,8 +89,6 @@
                 </div>
                 <div class=" fill-black flex flex-col items-end justify-between p-3">
                     <svg viewBox="0 -960 960 960" class=" w-7 h-7 bg-white rounded-3xl p-1"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg>
-
-                    <span item-id="{{ $item->id}}" class=" cart-item w-fit h-fit flex flex-nowrap justify-center items-center text-center bg-emerald-500 text-white rounded-2xl font-bold overflow-hidden">
                             @php
                                 // Pluck all item IDs into an array for a fast, clean check
                                 $cartItemIds = $viewData['cartItems'] ? $viewData['cartItems']->GetItems->pluck('menu_item_id')->toArray() : [];
@@ -97,20 +96,23 @@
 
                             @if (in_array($item->id, $cartItemIds))
                                 <!-- Checkmark Icon (Item is in cart) -->
-                                <button class="">
-                                    <svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
-                                        <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
-                                    </svg>
-                                </button>
+                                <span item-id="{{ $item->id}}" class=" cart-item w-fit h-fit flex flex-nowrap justify-center items-center text-center bg-lime-600 text-white rounded-2xl font-bold overflow-hidden">
+                                    <button class="">
+                                        <svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+                                            <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+                                        </svg>
+                                    </button>
+                                </span>
                             @else
                                 <!-- Plus Icon (Item is NOT in cart) -->
-                                <button class=" add-to-cart">
-                                    <svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
-                                        <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/>
-                                    </svg>
-                                </button>
+                                <span item-id="{{ $item->id}}" class=" cart-item w-fit h-fit flex flex-nowrap justify-center items-center text-center bg-red-500 text-white rounded-2xl font-bold overflow-hidden">
+                                    <button class=" add-to-cart">
+                                        <svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+                                            <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/>
+                                        </svg>
+                                    </button>
+                                </span>
                             @endif
-                    </span>
                 </div>
             </div>
             @endforeach
