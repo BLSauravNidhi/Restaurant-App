@@ -121,5 +121,4 @@
             {{-- Items End  --}}
         </div>
     </section>
-    <div class="w-full h-15"></div>
 @endsection

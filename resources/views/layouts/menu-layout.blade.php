@@ -15,6 +15,7 @@
         <p class=" w-10 flex justify-center items-center bg-lime-500 text-white rounded-4xl p-2 fill-gray-900 border-0 outline-0 font-medium lexend">{{ $sessionInfo->table_number}}</p>
     </div>
     @yield('app-content')
+    <div class="w-full h-15"></div>
     @include('components.table-navbar')
     @stack('page-scripts')
 </body>
