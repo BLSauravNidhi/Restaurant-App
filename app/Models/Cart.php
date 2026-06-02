@@ -12,4 +12,7 @@ class Cart extends Model
     public function GetItems(){
         return $this->hasMany(CartItem::class);
     }
+    public function GetItemsInfo(){
+        return $this->belongsToMany(MenuItem::class, 'cart_items')->withPivot('quantity');
+    }
 }

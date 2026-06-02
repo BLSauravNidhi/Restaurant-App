@@ -24,8 +24,10 @@ Route::domain(config('app.domain'))->group(function() {
     Route::get('/api/request-status/{id}', [TableController::class, 'tableStatus'])->name('tableRequesStatusCheck');
 
     // Menu & Cart
-    Route::get('/menu/{tableNum}/{token}', [PageController::class, 'tableMenu'])->name('getMenu');
-    Route::resource('/menu/{tableNum}/{token}/cart', CartController::class);
+    Route::middleware(['validate.table'])->group(function() {
+        Route::get('/menu/{tableNum}/{token}', [PageController::class, 'tableMenu'])->name('getMenu');
+        Route::resource('/menu/{tableNum}/{token}/cart', CartController::class);
+    });
 });
 
 

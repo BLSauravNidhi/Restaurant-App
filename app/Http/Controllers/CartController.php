@@ -12,9 +12,33 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($tableNum, $token)
+    public function index(Request $request, $tableNum, $token)
     {
-        // 
+        // Grab the pre-validated session attached by the middleware
+        $sessionInfo = $request->attributes->get('tableSession');
+
+        // Get The Cart Info With Items Details Or Create New Cart
+        $cartItems = Cart::where([
+                'session_id'=> $sessionInfo->id,
+                'cart_status' => 'pending'
+            ])
+            ->with('GetItemsInfo')
+            ->firstOrCreate(
+            [
+                'session_id' => $sessionInfo->id,
+                'cart_status' => 'pending'
+            ],
+            ['session_id' => $sessionInfo->id]
+        ); 
+        // Assining Items Info Only 
+        $viewData = [];
+        $viewData['itemsInfo'] = $cartItems->GetItemsInfo ;
+
+        return view('customer.cart', 
+        [
+            'viewData' => $viewData,
+            'sessionInfo' => $sessionInfo,
+        ]);
     }
 
     /**
@@ -33,9 +57,7 @@ class CartController extends Controller
         $request->validate([
             'item_id' => 'required',
         ]);
-
-        // check if there is any cart 
-        
+        // check if there is any cart   
         $sessionInfo = TableSession::where('session_token', $token)->first();
         $cart = Cart::firstOrCreate(
             [
@@ -44,7 +66,6 @@ class CartController extends Controller
             ],
             ['session_id' => $sessionInfo->id]
         );  
-
         if($cart){
             $addItmes = CartItem::updateOrCreate(
                 [
@@ -55,7 +76,6 @@ class CartController extends Controller
                     'quantity' => 1,
                 ]
             );
-            
             if($addItmes){
                 return response()->json([
                     'success' => true,
