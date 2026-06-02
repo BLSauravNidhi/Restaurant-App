@@ -15,7 +15,6 @@ class TableController extends Controller
     public function GetTableAccess(string $tableNum){
         // checking status that the table has any ongoing session
         $hasSession = TableSession::where('table_number', $tableNum)
-            ->where('active', true)
             ->where('expires_at', '>', now())->first();
         // if yes then redirect it to menu page with their table number and token
         if($hasSession){
@@ -73,7 +72,6 @@ class TableController extends Controller
         $tableNum = $request['table-num'];
 
         $verify = TableSession::where('session_join_code', $request['passcode'])
-            ->where('active', true)
             ->where('expires_at', '>', now())
             ->first();
 

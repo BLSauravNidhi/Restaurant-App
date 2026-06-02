@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('table_number');
             $table->foreign('table_number')->references('table_number')->on('tables');
             $table->uuid('session_token')->unique();
-            $table->boolean('active')->default(true);
             $table->timestamp('started_at')->useCurrent();
             $table->timestamp('expires_at')->nullable();
             $table->string('session_join_code')->nullable();
