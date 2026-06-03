@@ -27,7 +27,7 @@
                 window.location.href = `{{ route('HomePage')}}`;
             }
 
-        }, 10000); // every 10 sec
+        }, 3000); // every 3 sec
     </script>
 @endpush
 
