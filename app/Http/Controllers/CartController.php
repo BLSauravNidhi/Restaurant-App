@@ -32,7 +32,7 @@ class CartController extends Controller
         $viewData = [];
         $viewData['itemsInfo'] = $cartItems->GetItemsInfo ;
 
-        return view('customer.cart', 
+        return view('customer.cart',
         [
             'viewData' => $viewData,
             'sessionInfo' => $sessionInfo,
