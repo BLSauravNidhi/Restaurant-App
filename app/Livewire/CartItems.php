@@ -19,14 +19,13 @@ class CartItems extends Component
         // fetch current quantity if item is already in cart 
         $cartItem = CartItem::withWhereHas('CartInfo',function($query){
                     $query->where('session_id', $this->sessionInfo->id);
-                    $query->where('cart_status', 'pending');
                 })->where('menu_item_id', $item->id)->first();
 
         $this->quantity = $cartItem ? $cartItem->quantity : 0 ;
     }
 
     private function updateItemQuantity(){
-        $cart = Cart::where('session_id', $this->sessionInfo->id)->select('id')->first();
+        $cart = Cart::where('session_id', $this->sessionInfo->id)->first();
 
         CartItem::where('cart_id', $cart->id)
                 ->where('menu_item_id', $this->item->id)

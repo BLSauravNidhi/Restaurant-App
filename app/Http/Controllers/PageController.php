@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Categorie;
 use App\Models\MenuItem;
+use App\Models\Order;
 use Illuminate\Http\Request;
 // use Illuminate\Http\Request;
 
@@ -35,6 +36,12 @@ class PageController extends Controller
 
     public function getOrdersPage(Request $request){
         $sessionInfo = $request->attributes->get('tableSession');
-        return view('customer.orders', [ 'sessionInfo' => $sessionInfo]);
+
+        $viewData = [] ;
+        $viewData['orders'] = Order::where('session_id', $sessionInfo->id)->get();
+        return view('customer.orders', [ 
+                'sessionInfo' => $sessionInfo,
+                'viewData' => $viewData
+            ]);
     }
 }
