@@ -12,4 +12,8 @@ class Order extends Model
     public function GetItems(){
         return $this->hasMany(CartItem::class);
     }
+
+    public function GetItemsInfo(){
+        return $this->belongsToMany(MenuItem::class, 'order_items')->withPivot('quantity');
+    }
 }

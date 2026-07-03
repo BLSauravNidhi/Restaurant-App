@@ -44,4 +44,22 @@ class PageController extends Controller
                 'viewData' => $viewData
             ]);
     }
+
+    public function getOrderInfo(Request $request, $tableNum, $token, $orderId){
+        $sessionInfo = $request->attributes->get('tableSession');
+        $data = Order::where('id',$orderId)
+                ->withWhereHas('GetItemsInfo', function($query) use ($orderId){
+                    $query->where('order_id', $orderId);
+                    $query->select('menu_items.id', 'item_name', 'image', 'price');
+                })
+                ->first();
+
+        $viewData = [];
+        $viewData['order'] = Order::find($orderId);
+        $viewData['items'] = $data->getItemsInfo;
+        return view('customer.order-info', [ 
+                'sessionInfo' => $sessionInfo,
+                'viewData' => $viewData
+            ]);
+    }
 }
