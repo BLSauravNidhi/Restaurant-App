@@ -16,10 +16,10 @@ class accessiblePages
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        if (Auth::guard('admin')->user()->role !== $role) {
-            abort(403, 'Unauthorized action.');
+        if (Auth::guard('admin')->user()->role === $role || Auth::guard('admin')->user()->role === 'administrator') {
+            return $next($request);
         }
-
-        return $next($request);
+            
+        abort(403, 'Unauthorized action.');
     }
 }

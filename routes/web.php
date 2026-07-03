@@ -47,14 +47,14 @@ Route::domain('admin.' . config('app.domain'))->group(function() {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('AdminDashboard');
         
         // Table Statuses & Actions
-        Route::prefix('dashboard/table-status')->group(function() {
+        Route::prefix('dashboard/table-status')->middleware('role:waiter')->group(function() {
             Route::get('/', [AdminController::class, 'tableStatus'])->name('TableStatus');
             Route::get('/approve/{admin}/{id}', [AdminController::class , 'tableRequestApproved'])->name('approveTableRequest');
             Route::get('/reject/{admin}/{id}', [AdminController::class , 'tableRequestRejected'])->name('rejectTableRequest');
             Route::get('/cancel/{adminId}/{reqId}', [AdminController::class, 'cancelTable'])->name('table.cancel');
+            Route::get('/table-requests', [AdminController::class, 'tableRequests'])->name('TableRequests');
         });
         
-        Route::get('dashboard/table-requests', [AdminController::class, 'tableRequests'])->name('TableRequests');
 
         // Role-Restricted Management
         Route::middleware('role:administrator')->prefix('dashboard')->group(function() {
