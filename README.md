@@ -1,3 +1,4 @@
+<p align="center"><a href="" target="_blank"><img src="https://ibb.co/BHnP2qgL" width="400" alt="App Logo"></a></p>
 
 # 🍽️ QR-Based Restaurant Ordering & Management System
 
