@@ -1,4 +1,4 @@
-<p align="center"><a href="" target="_blank"><img src="https://ibb.co/BHnP2qgL" width="400" alt="App Logo"></a></p>
+<p align="center"><a href="https://imgbb.com/"><img src="https://i.ibb.co/V0wNY2vV/Restaurant-Logo-Fixed.png" alt="Restaurant Logo Fixed" border="0"></a></p>
 
 # 🍽️ QR-Based Restaurant Ordering & Management System
 
@@ -224,12 +224,12 @@ php artisan db:seed
 Run the application
 
 ```bash
-php artisan serve
-
-npm run dev
+composer run dev
 ```
 
 ---
+## Setup
+Point the admin sub-domain to same directory. Check the Routes
 
 ## 🎯 Future Improvements
 
@@ -246,7 +246,7 @@ npm run dev
 
 ## 📄 License
 
-This project is created for learning and portfolio purposes.
+This project is created for learning. Do not include this project or any modified version of it in your portfolio, resume, academic submission, or professional profile. You are not allowed to copy this project, in whole or in part, and present it as your own work.
 
 ---
 
